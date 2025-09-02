@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function() {
   let prevScrollPos = window.pageYOffset;
   const navbar = document.getElementById("navbar");
@@ -36,6 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   greetingEl.innerHTML = greetingHTML;
 });
+
+
+
+
+
 
 
 
