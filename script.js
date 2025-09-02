@@ -1,22 +1,5 @@
 
-document.addEventListener("DOMContentLoaded", function() {
-  let prevScrollPos = window.pageYOffset;
-  const navbar = document.getElementById("navbar");
 
-  window.onscroll = function() {
-    let currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos > prevScrollPos) {
-      // Scrolling down → hide navbar
-      navbar.style.top = "-80px"; // adjust based on navbar height
-    } else {
-      // Scrolling up → show navbar
-      navbar.style.top = "0";
-    }
-
-    prevScrollPos = currentScrollPos;
-  };
-});
 
 
 
@@ -37,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   greetingEl.innerHTML = greetingHTML;
 });
+
 
 
 
