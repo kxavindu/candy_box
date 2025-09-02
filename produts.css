@@ -1,0 +1,122 @@
+
+.custom-navbar {
+  background-color: #EF5A90 !important; /* force pastel pink */
+}
+
+
+
+/* Centered title */
+.navbar-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+
+
+
+
+/* Back button styling */
+.back-btn {
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #f1c1d1;
+  color: #1d3557;
+}
+
+
+
+
+
+/* Wrapper makes the body fill full height */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content grows to push footer down */
+main {
+  flex: 1 0 auto;
+}
+
+/* Optional: make footer links hover effect */
+footer a:hover {
+  color: #ffe5e5;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+:root {
+  --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+}
+
+body {
+  background: #111 !important;
+  color: #fff;
+}
+
+.card {
+  background: purple;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+  cursor: pointer; /* whole card clickable */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.card img {
+  width: 50px; /* small image */
+  height: 50px;
+  object-fit: cover;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.card-title {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: rgba(250,250,250,0.7);
+}
+
+.card-text {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
