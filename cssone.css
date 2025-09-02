@@ -1,4 +1,5 @@
 
+
     .social-icons {
       position: fixed;
       bottom: 20px;
@@ -20,7 +21,6 @@
 
 
 
-/*methana idn*/
 
 
 
@@ -79,3 +79,85 @@ body {
     background-color: rgb(230, 100, 100); /* slightly darker on hover */
 }
 
+
+/* Body background */
+body {
+    background-color: rgb(255, 240, 245); /* soft pastel background */
+}
+
+/* Banner */
+.unique-banner {
+    border-radius: 1rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+/* Product tile */
+.unique-tile {
+    background-color: rgb(255, 214, 232); /* pastel pink */
+    border-radius: 1rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6); /* darker shadow by default */
+    padding: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+}
+
+/* Hover effect only for product tiles */
+.unique-tile:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8); /* even darker shadow on hover */
+}
+
+/* Card inside tile */
+.unique-tile .card {
+    border: none;
+    border-radius: 1rem;
+}
+
+/* Card image rounded top */
+.unique-tile .card-img-top {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+/* Buy Now button */
+.unique-tile .btn-buy {
+    background-color: rgb(217, 136, 136); /* pastel low red */
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.unique-tile .btn-buy:hover {
+    background-color: rgb(230, 100, 100); /* slightly darker on hover */
+}
+
+
+
+
+
+img.flipped {
+    transform: scaleX(-1); /* horizontal flip */
+    /* transform: scaleY(-1); vertical flip */
+}
+
+#navbar {
+  transition: top 0.9s;
+}
+
+
+#greeting {
+  font-size: 1.2rem;
+  font-weight: heavy;
+  color: #111010;
+}
+
+
+
+
+
+
+
+
+/*11/2 updated*/
