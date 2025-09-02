@@ -164,8 +164,10 @@ img.flipped {
 }
 
 .semi-bold {
-  font-weight: 600;  /* slightly heavier than normal (400), but not bold (700) */
+  font-weight: 600 !important;
 }
 
+
 /*11/2 updated*/
+
 
