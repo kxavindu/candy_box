@@ -37,39 +37,6 @@ const products = [
 //change carousel images links too when update new itames @carouselImages.jss
 
 // UNIVERSAL BACK BUTTON
-document.addEventListener("DOMContentLoaded", () => {
-  const backBtn = document.getElementById("back-btn");
-  if (!backBtn) return;
-
-  backBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // Try to go to last saved page
-    const lastPage = sessionStorage.getItem('lastPage');
-    if (lastPage) {
-      window.location.href = lastPage;
-    } else {
-      // fallback: if on a product page, go to category of that product
-      const productId = new URLSearchParams(window.location.search).get("id");
-      if (productId && typeof products !== "undefined") {
-        const product = products.find(p => p.id === parseInt(productId));
-        if (product) {
-          window.location.href = `productTemplate.html?cat=${product.category}`;
-          return;
-        }
-      }
-      // fallback: just go back in history
-      window.history.back();
-    }
-  });
-
-  // Store current page as lastPage when clicking product cards
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      sessionStorage.setItem('lastPage', window.location.href);
-    });
-  });
-});
 
 
 
