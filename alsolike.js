@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof products === "undefined") return; // safety check
+
   const productId = new URLSearchParams(window.location.search).get("id");
   if (!productId) return;
 
@@ -11,31 +13,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const alsoLikeItems = products.filter(p => p.id !== product.id);
   const itemsPerPage = 3;
 
-  // Setup smooth fade-in/fade-out with CSS
-  alsoLikeRow.style.transition = "opacity 0.3s"; // faster fade
+  alsoLikeRow.style.transition = "opacity 0.3s";
 
   function renderItems() {
-    // Fade out
     alsoLikeRow.style.opacity = 0;
 
     setTimeout(() => {
       alsoLikeRow.innerHTML = "";
-      const shuffled = alsoLikeItems.sort(() => 0.5 - Math.random());
+      const shuffled = [...alsoLikeItems].sort(() => 0.5 - Math.random());
       const itemsToShow = shuffled.slice(0, itemsPerPage);
 
       itemsToShow.forEach(item => {
         const col = document.createElement("div");
-        col.style.width = "33.33%";
-        col.style.display = "inline-block";
-        col.style.verticalAlign = "top";
-        col.style.boxSizing = "border-box";
+        col.className = "col"; // use Bootstrap flex
         col.style.padding = "5px";
 
         const card = document.createElement("div");
         card.className = "card h-100";
         card.style.cursor = "pointer";
-        card.style.aspectRatio = "1 / 1"; // square card
-        // Full dark shadow
+        card.style.aspectRatio = "1 / 1";
         card.style.boxShadow = "0 0 15px rgba(0,0,0,0.4)";
         card.onclick = () => window.location.href = `product.html?id=${item.id}`;
 
@@ -61,16 +57,16 @@ document.addEventListener("DOMContentLoaded", () => {
         alsoLikeRow.appendChild(col);
       });
 
-      // Fade in
       alsoLikeRow.style.opacity = 1;
     }, 50);
   }
 
   renderItems();
-  setInterval(renderItems, 10000); // 10 seconds rotation
+  setInterval(renderItems, 10000);
 
   const alsoLikeContainer = document.getElementById("also-like-container");
   if (alsoLikeContainer) {
-    alsoLikeContainer.querySelector("h5").classList.add("text-center");
+    const heading = alsoLikeContainer.querySelector("h5");
+    if (heading) heading.classList.add("text-center");
   }
 });
