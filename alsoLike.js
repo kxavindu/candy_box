@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const itemsPerPage = 3;
 
   // Setup smooth fade-in/fade-out with CSS
-  alsoLikeRow.style.transition = "opacity 0.3s"; // faster fade
+  alsoLikeRow.style.transition = "opacity 0.3s";
 
   function renderItems() {
     // Fade out
@@ -20,13 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       alsoLikeRow.innerHTML = "";
-      const shuffled = alsoLikeItems.sort(() => 0.5 - Math.random());
+
+      const shuffled = [...alsoLikeItems].sort(() => 0.5 - Math.random());
       const itemsToShow = shuffled.slice(0, itemsPerPage);
+
+      // Create flex container to center items
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.justifyContent = "center";
+      row.style.flexWrap = "wrap";
 
       itemsToShow.forEach(item => {
         const col = document.createElement("div");
-        col.className = "col-4 mb-3"; // ✅ always 3 per row
+        col.style.flex = "0 0 33.33%";  // force 3 per row
+        col.style.maxWidth = "33.33%";
         col.style.padding = "5px";
+        col.style.boxSizing = "border-box";
 
         const card = document.createElement("div");
         card.className = "card h-100";
@@ -35,13 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.boxShadow = "0 0 15px rgba(0,0,0,0.4)";
         card.onclick = () => window.location.href = `product.html?id=${item.id}`;
 
+        const imgWrapper = document.createElement("div");
+        imgWrapper.style.aspectRatio = "1 / 1";
+        imgWrapper.style.overflow = "hidden";
+
         const img = document.createElement("img");
         img.src = item.image;
-        img.className = "card-img-top";
         img.alt = item.name;
         img.style.width = "100%";
         img.style.height = "100%";
         img.style.objectFit = "cover";
+
+        imgWrapper.appendChild(img);
+        card.appendChild(imgWrapper);
 
         const body = document.createElement("div");
         body.className = "card-body text-center";
@@ -51,13 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
         title.textContent = item.name;
 
         body.appendChild(title);
-        card.appendChild(img);
         card.appendChild(body);
         col.appendChild(card);
-        alsoLikeRow.appendChild(col);
+        row.appendChild(col);
       });
 
-      // Fade in
+      alsoLikeRow.appendChild(row);
       alsoLikeRow.style.opacity = 1;
     }, 50);
   }
@@ -67,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const alsoLikeContainer = document.getElementById("also-like-container");
   if (alsoLikeContainer) {
-    alsoLikeContainer.querySelector("h5").classList.add("text-center");
+    const heading = alsoLikeContainer.querySelector("h5");
+    if (heading) heading.classList.add("text-center");
   }
 });
