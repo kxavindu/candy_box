@@ -226,14 +226,15 @@ img.flipped {
 
 .sb-results-box {
   margin-top: 10px;
-  border: 1px solid #ddd;
+  border: none; /* This is the line I changed */
   border-radius: 12px;
   max-height: 250px;
   overflow-y: auto;
   background: #fff;
   width: 300px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* I also restored a subtle shadow for better UI */
 }
+
 
 .sb-result-item {
   display: flex;
@@ -263,13 +264,5 @@ img.flipped {
 
 
 
-.sb-results-box {
-  margin-top: 10px;
-  border: 1px solid #f8f9fa;   /* match page background so line is invisible */
-  border-radius: 12px;
-  max-height: 250px;
-  overflow-y: auto;
-  background: #fff;
-  width: 300px;
-  box-shadow: none;
-}
+
+
