@@ -11,11 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const alsoLikeItems = products.filter(p => p.id !== product.id);
   const itemsPerPage = 3;
 
-  // Setup smooth fade-in/fade-out with CSS
+  // Setup smooth fade-in/fade-out
   alsoLikeRow.style.transition = "opacity 0.3s";
 
   function renderItems() {
-    // Fade out
     alsoLikeRow.style.opacity = 0;
 
     setTimeout(() => {
@@ -24,51 +23,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const shuffled = [...alsoLikeItems].sort(() => 0.5 - Math.random());
       const itemsToShow = shuffled.slice(0, itemsPerPage);
 
-      // Create flex container to center items
+      // Flex container to center cards
       const row = document.createElement("div");
       row.style.display = "flex";
       row.style.justifyContent = "center";
       row.style.flexWrap = "wrap";
+      row.style.gap = "10px"; // space between cards
 
       itemsToShow.forEach(item => {
-        const col = document.createElement("div");
-        col.style.flex = "0 0 33.33%";  // force 3 per row
-        col.style.maxWidth = "33.33%";
-        col.style.padding = "5px";
-        col.style.boxSizing = "border-box";
+        const cardWrapper = document.createElement("div");
+        cardWrapper.style.flex = "0 1 30%"; // shrink proportionally on mobile
+        cardWrapper.style.maxWidth = "200px"; // optional max width
+        cardWrapper.style.aspectRatio = "1 / 1"; // square
+        cardWrapper.style.cursor = "pointer";
+
+        cardWrapper.onclick = () => window.location.href = `product.html?id=${item.id}`;
 
         const card = document.createElement("div");
-        card.className = "card h-100";
-        card.style.cursor = "pointer";
-        card.style.aspectRatio = "1 / 1"; // square card
+        card.style.width = "100%";
+        card.style.height = "100%";
+        card.style.backgroundImage = `url(${item.image})`;
+        card.style.backgroundSize = "cover";
+        card.style.backgroundPosition = "center";
+        card.style.borderRadius = "10px";
         card.style.boxShadow = "0 0 15px rgba(0,0,0,0.4)";
-        card.onclick = () => window.location.href = `product.html?id=${item.id}`;
 
-        const imgWrapper = document.createElement("div");
-        imgWrapper.style.aspectRatio = "1 / 1";
-        imgWrapper.style.overflow = "hidden";
-
-        const img = document.createElement("img");
-        img.src = item.image;
-        img.alt = item.name;
-        img.style.width = "100%";
-        img.style.height = "100%";
-        img.style.objectFit = "cover";
-
-        imgWrapper.appendChild(img);
-        card.appendChild(imgWrapper);
-
-        const body = document.createElement("div");
-        body.className = "card-body text-center";
-
-        const title = document.createElement("h6");
-        title.className = "card-title";
-        title.textContent = item.name;
-
-        body.appendChild(title);
-        card.appendChild(body);
-        col.appendChild(card);
-        row.appendChild(col);
+        cardWrapper.appendChild(card);
+        row.appendChild(cardWrapper);
       });
 
       alsoLikeRow.appendChild(row);
@@ -77,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderItems();
-  setInterval(renderItems, 10000); // 10 seconds rotation
+  setInterval(renderItems, 10000);
 
   const alsoLikeContainer = document.getElementById("also-like-container");
   if (alsoLikeContainer) {
