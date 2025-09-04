@@ -19,18 +19,7 @@ function renderCategory() {
   if (titleElement) {
     titleElement.textContent = categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1);
 
-    // Highlight the page title
-    titleElement.style.backgroundColor = "#fefae0"; // pastel pink
-    titleElement.style.color = "#333";             // text color for contrast
-    titleElement.style.padding = "8px 20px";       // padding inside highlight
-    titleElement.style.borderRadius = "6px";       // subtle rounding
-    titleElement.style.display = "inline-block";   // fit highlight to text
-
-    // Center the title on the page
-    titleElement.style.textAlign = "center";       // center text inside h1
-    titleElement.style.marginLeft = "auto";        // center h1 itself
-    titleElement.style.marginRight = "auto";       // center h1 itself
-    titleElement.style.display = "table";          // allows auto margins to work
+   
   }
 
   // Clear previous content
@@ -104,3 +93,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
