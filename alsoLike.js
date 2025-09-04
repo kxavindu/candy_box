@@ -25,17 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       itemsToShow.forEach(item => {
         const col = document.createElement("div");
-        col.style.width = "33.33%";
-        col.style.display = "inline-block";
-        col.style.verticalAlign = "top";
-        col.style.boxSizing = "border-box";
+        col.className = "col-4 mb-3"; // ✅ always 3 per row
         col.style.padding = "5px";
 
         const card = document.createElement("div");
         card.className = "card h-100";
         card.style.cursor = "pointer";
         card.style.aspectRatio = "1 / 1"; // square card
-        // Full dark shadow
         card.style.boxShadow = "0 0 15px rgba(0,0,0,0.4)";
         card.onclick = () => window.location.href = `product.html?id=${item.id}`;
 
