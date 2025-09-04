@@ -14,35 +14,24 @@ function renderCategory() {
   // Filter products by category
   const filtered = products.filter(p => p.category.toLowerCase() === categoryParam.toLowerCase());
 
+  // Update page title dynamically
+  const titleElement = document.querySelector("h1.text-center");
+  if (titleElement) {
+    titleElement.textContent = categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1);
 
+    // Highlight the page title
+    titleElement.style.backgroundColor = "#fefae0"; // pastel pink
+    titleElement.style.color = "#333";             // text color for contrast
+    titleElement.style.padding = "8px 20px";       // padding inside highlight
+    titleElement.style.borderRadius = "6px";       // subtle rounding
+    titleElement.style.display = "inline-block";   // fit highlight to text
 
-
-// Update page title dynamically
-const titleElement = document.querySelector("h1.text-center");
-if (titleElement) {
-  titleElement.textContent = categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1);
-
-  // Highlight the page title
-  titleElement.style.backgroundColor = "#fefae0"; // pastel pink
-  titleElement.style.color = "#333";             // text color for contrast
-  titleElement.style.padding = "8px 20px";       // padding inside highlight
-  titleElement.style.borderRadius = "6px";       // subtle rounding
-  titleElement.style.display = "inline-block";   // fit highlight to text
-
-  // Center the title on the page
-  titleElement.style.textAlign = "center";       // center text inside h1
-  titleElement.style.marginLeft = "auto";        // center h1 itself
-  titleElement.style.marginRight = "auto";       // center h1 itself
-  titleElement.style.display = "table";          // allows auto margins to work
-}
-
-
-
-
-
-
-
-
+    // Center the title on the page
+    titleElement.style.textAlign = "center";       // center text inside h1
+    titleElement.style.marginLeft = "auto";        // center h1 itself
+    titleElement.style.marginRight = "auto";       // center h1 itself
+    titleElement.style.display = "table";          // allows auto margins to work
+  }
 
   // Clear previous content
   container.innerHTML = "";
@@ -59,11 +48,23 @@ if (titleElement) {
       window.location.href = `product.html?id=${product.id}`;
     };
 
+    // 🔹 Image wrapper to force square image
+    const imgWrapper = document.createElement("div");
+    imgWrapper.style.aspectRatio = "1 / 1"; // square image
+    imgWrapper.style.overflow = "hidden";
+
     const img = document.createElement("img");
     img.src = product.image;
     img.className = "card-img-top";
     img.alt = product.name;
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
 
+    imgWrapper.appendChild(img);
+    card.appendChild(imgWrapper);
+
+    // Card body stays inside card
     const body = document.createElement("div");
     body.className = "card-body text-center";
 
@@ -77,7 +78,6 @@ if (titleElement) {
 
     body.appendChild(title);
     body.appendChild(price);
-    card.appendChild(img);
     card.appendChild(body);
     col.appendChild(card);
     container.appendChild(col);
@@ -86,7 +86,6 @@ if (titleElement) {
 
 // Run on page load
 document.addEventListener("DOMContentLoaded", renderCategory);
-
 
 // Back button dynamic redirect
 document.addEventListener("DOMContentLoaded", () => {
@@ -105,4 +104,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
