@@ -108,7 +108,8 @@ function renderCart() {
           <img src="${item.image}" alt="${item.name}" style="width:80px; height:80px; object-fit:cover; border-radius:10px;">
           <div class="ms-3 flex-grow-1">
             <h5>${item.name}</h5>
-            ${item.customMessage ? `<p><strong>Customize:</strong> ${item.customMessage}</p>` : ""}
+            ${item.customMessage ? `<p><strong>Customize:</strong> ${String(item.customMessage).length > 5 ? String(item.customMessage).substring(0,13) + "..." : item.customMessage}</p>` : ""}
+
             <p>Price: ${item.price}</p>
             <div class="quantity-controls d-flex align-items-center">
               <button class="btn btn-outline-secondary btn-sm decrease">-</button>
@@ -162,7 +163,7 @@ document.getElementById("checkout-btn").addEventListener("click", () => {
     const totalPrice = cart.reduce((acc, item) => acc + parseFloat(item.price.replace("Rs.","").trim())*item.quantity, 0);
     message += `✨ *Total: Rs.${totalPrice}.00* \n\n*Please confirm order* ✅`;
 
-    const phoneNumber = "94771440701"; // WhatsApp number
+    const phoneNumber = "94771440701";
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
 });
