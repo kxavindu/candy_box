@@ -162,15 +162,11 @@ function renderProduct() {
     setTimeout(() => addToCartBtn.classList.remove("added"), 800);
   });
 
-  // Back button logic
+   // Back button logic
   const backBtn = document.getElementById("back-btn");
   if (backBtn) {
     backBtn.addEventListener("click", () => {
-      if (document.referrer && document.referrer !== window.location.href) {
-        window.location.href = document.referrer;
-      } else {
-        window.history.back();
-      }
+      window.location.href = `productTemplate.html?cat=${product.category}`;
     });
   }
 }
